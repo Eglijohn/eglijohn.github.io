@@ -67,15 +67,18 @@ footer {
 }
 
 .logo {
-    font-size: 2.5rem;
+    margin-left: -7rem;
+    margin-top: 0.5rem;
+    border-radius: 100rem;
     color: #7731cf;
-    font-weight: 800;
     transition: 0.3s ease;
+    width: 3rem;
 }
 
 .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.15);
     text-shadow: 0 0 25px #8c47e0;
+    border: 1px solid silver;
 }
 
 nav a {
@@ -217,12 +220,13 @@ nav a.active {
     max-width: 600px;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 0 0 25px #7731cf;
+    border: 1px solid #7731cf;
     transition: 0.3s ease;
 }
 
 .projects .minebot:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 50px #7731cf;
 }
 
 .projects .minebot h1 {

@@ -47,15 +47,18 @@ footer {
 }
 
 .logo {
-    font-size: 2.5rem;
+    margin-left: -7rem;
+    margin-top: 0.5rem;
+    border-radius: 100rem;
     color: #7731cf;
-    font-weight: 800;
     transition: 0.3s ease;
+    width: 3rem;
 }
 
 .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.15);
     text-shadow: 0 0 25px #8c47e0;
+    border: 1px solid silver;
 }
 
 nav a {
@@ -138,11 +141,12 @@ nav a.active {
     border-radius: 0.5rem;
     margin-bottom: 10rem;
     transition: 0.3s ease;
-    box-shadow: 0 0 25px #7731cf;
+    border: 1px solid #7731cf;
 }
 
 .home-content .button:hover{
     transform: scale(1.1);
+    box-shadow: 0 0 25px #7731cf;
 }
 
 .home-content .button a{
