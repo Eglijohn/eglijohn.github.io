@@ -33,7 +33,9 @@ body {
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
-    background: linear-gradient(to top, #000000 87%, #502570 100%);
+    background: linear-gradient(to bottom, #502570, #000000 15%);
+    min-height: 100vh;
+    background-attachment: fixed;
     color: white;
 }
 
@@ -47,7 +49,6 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    border-radius: 1rem;
 }
 
 footer {
@@ -256,4 +257,28 @@ nav a.active {
     transform: scale(1.05) translateY(-5px);
     background-color: #7731cf;
     box-shadow: 0 0 25px #7731cf;
+}
+
+.honorablemention .title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(to right, #121fcf 0%, #7731cf 38%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.honorablemention .twitter-tweet {
+    margin: 0 auto 5rem auto;
+    max-width: 600px;
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: 0.3s ease;
+    filter: blur(3px);
+    transition: filter 03.s ease;
+}
+
+.honorablemention .twitter-tweet:hover {
+    transform: scale(1.05);
+    filter: blur(0);
 }
