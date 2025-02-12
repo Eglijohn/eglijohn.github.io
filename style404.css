@@ -26,18 +26,21 @@ body {
 
 header {
     position: fixed;
-    top: 0;
+    top: 0.5rem;
     width: 100%;
     padding: 0.2rem 11%;
     backdrop-filter: blur(8px);
+    background: linear-gradient(to right, #ababab10, #00000065 50%);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    border-radius: 0.4rem;
+    border: 1px solid #6767673b;
 }
 
 footer {
-    background-color: #0f0f0f;
+    background-color: #0f0f0f40;
     height: 50px;
     margin: 0 0.3rem;
     border-radius: 1rem;
@@ -45,6 +48,7 @@ footer {
     padding-left: 1rem;
     line-height: 50px;
     font-size: 0.9rem;
+    border: 1px solid #6767673b;
 }
 
 .logo {

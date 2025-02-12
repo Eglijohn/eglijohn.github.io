@@ -35,24 +35,26 @@ body {
     overflow-x: hidden;
     background: linear-gradient(to bottom, #502570, #000000 15%);
     min-height: 100vh;
-    background-attachment: fixed;
     color: white;
 }
 
 header {
     position: fixed;
-    top: 0;
+    top: 0.5rem;
     width: 100%;
     padding: 0.2rem 11%;
     backdrop-filter: blur(8px);
+    background: linear-gradient(to right, #ababab10, #00000065 50%);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    border-radius: 0.4rem;
+    border: 1px solid #6767673b;
 }
 
 footer {
-    background-color: #0f0f0f;
+    background-color: #0f0f0f40;
     height: 50px;
     margin: 0 0.3rem;
     border-radius: 1rem;
@@ -60,6 +62,7 @@ footer {
     padding-left: 1rem;
     line-height: 50px;
     font-size: 0.9rem;
+    border: 1px solid #6767673b;
 }
 
 .active {
@@ -205,6 +208,8 @@ nav a.active {
 .projects {
     background-color: #000;
     padding: 10rem 5rem;
+    margin-top: -1rem;
+    margin-bottom: -2rem;
 }
 
 .projects .title {
@@ -228,6 +233,7 @@ nav a.active {
 .projects .minebot:hover {
     transform: scale(1.05);
     box-shadow: 0 0 50px #7731cf;
+    background: linear-gradient(to left, #2e004c5e 0%, #00000009 70%);
 }
 
 .projects .minebot h1 {
@@ -257,4 +263,59 @@ nav a.active {
     transform: scale(1.05) translateY(-5px);
     background-color: #7731cf;
     box-shadow: 0 0 25px #7731cf;
+}
+
+.projects .swisslp-website {
+    margin: 0 auto 5rem auto;
+    max-width: 600px;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid #7731cf;
+    transition: 0.3s ease;
+}
+
+.projects .swisslp-website:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px #7731cf;
+}
+
+.projects .swisslp-website h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.projects .swisslp-website p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.projects .swisslp-website a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    color: #283ada;
+    transition: 0.3s ease;
+}
+
+.projects .swisslp-website a:hover {
+    color: black;
+    transform: scale(1.05) translateY(-5px);
+    background-color: #7731cf;
+    box-shadow: 0 0 25px #7731cf;
+}
+
+.projects .swisslp-website a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    color: #283ada;
+    transition: 0.3s ease;
 }
