@@ -1,27 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="logo.png">
     <title>Eglijohn</title>
-</head>
+    <style>
+        @import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap);
 
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                margin-top: -2rem;
+                margin-bottom: -2rem;
+            }
+
+            100% {
+                opacity: 1;
+                margin-top: 0rem;
+                margin-bottom: 0rem;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 110%;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #502570, #000000 15%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        header {
+            position: fixed;
+            top: 0.5rem;
+            width: 100%;
+            padding: 0.2rem 11%;
+            backdrop-filter: blur(8px);
+            background: linear-gradient(to right, #ababab10, #00000065 50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            border-radius: 0.4rem;
+            border: 1px solid #6767673b;
+        }
+
+        /* Displacement filter overlay for header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            backdrop-filter: url(#displacementFilter4);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 0.4rem;
+        }
+
+        footer {
+            background-color: #0f0f0f40;
+            height: 50px;
+            margin: 0 0.3rem;
+            border-radius: 1rem;
+            text-align: left;
+            padding-left: 1rem;
+            line-height: 50px;
+            font-size: 0.9rem;
+            border: 1px solid #6767673b;
+        }
+
+        .active {
+            font-weight: bold;
+            color: red;
+        }
+
+        .logo {
+            margin-left: -7rem;
+            margin-top: 0.5rem;
+            border-radius: 100rem;
+            color: #7731cf;
+            transition: 0.3s ease;
+            width: 3rem;
+        }
+
+        .logo:hover {
+            transform: scale(1.15);
+            text-shadow: 0 0 25px #8c47e0;
+            border: 1px solid silver;
+        }
+
+        nav a {
+            font-size: 1.5rem;
+            color: white;
+            margin-left: 4rem;
+            font-weight: 500;
+            transition: 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #7731cf;
+            border-bottom: 3px solid #7731cf;
+            text-shadow: 0 0 50px #8c47e0;
+        }
+
+        @media(max-width: 995px) {
+            nav {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40%;
+                display: none;
+                padding: 1rem;
+                background-color: #161616;
+                border-bottom-left-radius: 2rem;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+
+            nav a:hover,
+            nav a.active {
+                padding: 1rem;
+                border-radius: 0.5rem;
+            }
+        }
+
+        .home {
+            animation: fadeIn 0.7s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7rem;
+            padding-top: 5rem;
+        }
+
+        .home-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-top: 4rem;
+        }
+
+        .home-content h2 {
+            margin-top: -0.7rem;
+            font-size: 72px;
+            background: linear-gradient(to right, #121fcf 0%, #7731cf 30%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .home-content p {
+            margin-top: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .home-img img {
+            margin-left: 1rem;
+            width: 32vw;
+            border-radius: 2%;
+            transition: 0.2s linear;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            font-size: 2rem;
+            border-radius: 50%;
+            margin: 3rem 1.5rem 3rem 0;
+            color: #283ada;
+            transition: 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: black;
+            transform: scale(1.05) translateY(-5px);
+            background-color: #7731cf;
+            box-shadow: 0 0 25px #7731cf;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: -2.5rem;
+            background: linear-gradient(to right, #7300ff 0%,  #502570);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            opacity: 0;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .projects {
+            background-color: #000;
+            padding: 10rem 5rem;
+            margin-top: -1rem;
+            margin-bottom: -2rem;
+        }
+
+        .projects .title {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 5rem;
+            background: linear-gradient(to right, #121fcf 0%, #7731cf 38%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects .minebot {
+            margin: 0 auto 5rem auto;
+            max-width: 600px;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #7731cf;
+            transition: 0.3s ease;
+        }
+
+        .projects .minebot:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px #7731cf;
+            background: linear-gradient(to left, #2e004c5e 0%, #00000009 70%);
+        }
+
+        .projects .minebot h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .projects .minebot p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .projects .minebot a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            font-size: 2rem;
+            border-radius: 50%;
+            color: #283ada;
+            transition: 0.3s ease;
+        }
+
+        .projects .minebot a:hover {
+            color: black;
+            transform: scale(1.05) translateY(-5px);
+            background-color: #7731cf;
+            box-shadow: 0 0 25px #7731cf;
+        }
+
+        .projects .swisslp-website {
+            margin: 0 auto 5rem auto;
+            max-width: 600px;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #7731cf;
+            transition: 0.3s ease;
+        }
+
+        .projects .swisslp-website:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px #7731cf;
+        }
+
+        .projects .swisslp-website h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .projects .swisslp-website p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .projects .swisslp-website a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            font-size: 2rem;
+            border-radius: 50%;
+            color: #283ada;
+            transition: 0.3s ease;
+        }
+
+        .projects .swisslp-website a:hover {
+            color: black;
+            transform: scale(1.05) translateY(-5px);
+            background-color: #7731cf;
+            box-shadow: 0 0 25px #7731cf;
+        }
+    </style>
+</head>
 <body>
+    <!-- SVG Filter Definition -->
+    <div style="position:absolute;top:-999px;left:-999px">
+        <svg width="200" height="200" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+            <filter id="displacementFilter4">
+                <feImage xlink:href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%230001' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF' style='filter:blur(5px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing9" />
+                <feImage xlink:href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF1' style='filter:blur(15px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing0" />
+                <feImage xlink:href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing1" />
+                <feImage xlink:href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='gradient1' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300F'/%3E%3C/linearGradient%3E%3ClinearGradient id='gradient2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='200' height='200' rx='25' fill='%237F7F7F' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient1)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient2)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%237F7F7FBB' style='filter:blur(5px)' /%3E%3C/svg%3E" x="0%" y="0%" width="100%" height="100%" result="thing2" />
+                <feDisplacementMap in2="thing2" in="SourceGraphic" scale="-148" xChannelSelector="B" yChannelSelector="G" />
+                <feColorMatrix type="matrix" values="1 0 0 0 0
+                 0 0 0 0 0
+                 0 0 0 0 0
+                 0 0 0 1 0" result="disp1" />
+                <feDisplacementMap in2="thing2" in="SourceGraphic" scale="-150" xChannelSelector="B" yChannelSelector="G" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0
+                 0 1 0 0 0
+                 0 0 0 0 0
+                 0 0 0 1 0" result="disp2" />
+                <feDisplacementMap in2="thing2" in="SourceGraphic" scale="-152" xChannelSelector="B" yChannelSelector="G" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0
+                 0 0 0 0 0
+                 0 0 1 0 0
+                 0 0 0 1 0" result="disp3" />
+                <feBlend in2="disp2" mode="screen"/>
+                <feBlend in2="disp1" mode="screen"/>
+                <feGaussianBlur stdDeviation="0.7" />
+                <feBlend in2="thing0" mode="screen"/>
+                <feBlend in2="thing9" mode="multiply"/>
+                <feComposite in2="thing1" operator="in"/>
+                <feOffset dx="43" dy="43"/>
+            </filter>
+        </svg>
+    </div>
+
     <header>
         <a href="index.html">
             <img src="logo.png" class="logo" alt="Eglijohn Logo">
         </a>
-
         <nav>
             <a href="#home" class="active">Home</a>
             <a href="#projects">Projects</a>
         </nav>
     </header>
-
+    
     <section id="home" class="home">
         <div class="home-img">
             <img src="main.png" alt="">
@@ -38,7 +393,7 @@
             </div>
         </div>
     </section>
-
+    
     <section id="projects" class="projects">
         <div class="title">Projects</div>
         <div class="minebot">
@@ -55,7 +410,7 @@
             <a href="https://www.youtube.com/@SwissLPoffical" target="_blank" rel="noreferrer noopener"><i class="fa-brands fa-youtube"></i></a>
         </div>
     </section>
-
+    
     <footer>
         <section class="footer">
             <div class="copyright">
@@ -63,6 +418,17 @@
             </div>
         </section>
     </footer>
-    <script src="script.js"></script>
+    
+    <script>
+        // Add smooth scrolling behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
