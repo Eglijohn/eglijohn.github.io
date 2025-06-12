@@ -24,6 +24,19 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
+body,
+html {
+    cursor: none;
+}
+
+a,
+button,
+[role="button"],
+.social-icons a,
+.project-card a {
+    cursor: none;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 110%;
@@ -221,7 +234,7 @@ nav a.active {
     -webkit-text-fill-color: transparent;
 }
 
-.projects .minebot {
+.projects .project-card {
     margin: 0 auto 5rem auto;
     max-width: 600px;
     border-radius: 1rem;
@@ -230,23 +243,23 @@ nav a.active {
     transition: 0.3s ease;
 }
 
-.projects .minebot:hover {
+.projects .project-card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 50px #7731cf;
     background: linear-gradient(to left, #2e004c5e 0%, #00000009 70%);
 }
 
-.projects .minebot h1 {
+.projects .project-card h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
 
-.projects .minebot p {
+.projects .project-card p {
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
-.projects .minebot a {
+.projects .project-card a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -258,64 +271,22 @@ nav a.active {
     transition: 0.3s ease;
 }
 
-.projects .minebot a:hover {
+.projects .project-card a:hover {
     color: black;
     transform: scale(1.05) translateY(-5px);
     background-color: #7731cf;
     box-shadow: 0 0 25px #7731cf;
 }
 
-.projects .swisslp-website {
-    margin: 0 auto 5rem auto;
-    max-width: 600px;
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid #7731cf;
-    transition: 0.3s ease;
-}
-
-.projects .swisslp-website:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 50px #7731cf;
-}
-
-.projects .swisslp-website h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.projects .swisslp-website p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.projects .swisslp-website a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 4rem;
-    height: 4rem;
-    font-size: 2rem;
+#cursor-dot {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    background: #ffffff23;
     border-radius: 50%;
-    color: #283ada;
-    transition: 0.3s ease;
-}
-
-.projects .swisslp-website a:hover {
-    color: black;
-    transform: scale(1.05) translateY(-5px);
-    background-color: #7731cf;
-    box-shadow: 0 0 25px #7731cf;
-}
-
-.projects .swisslp-website a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 4rem;
-    height: 4rem;
-    font-size: 2rem;
-    border-radius: 50%;
-    color: #283ada;
-    transition: 0.3s ease;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+    border: 1px solid #6767673b;
 }
