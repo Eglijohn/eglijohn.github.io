@@ -173,6 +173,7 @@ nav a.active {
     min-height: 80vh;
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeIn 0.7s;
 }
 
 .gallery .title {
@@ -202,8 +203,7 @@ nav a.active {
 .gallery-item {
     display: flex;
     flex-direction: column;
-    background: var(--clr-hover-light);
-    border: 1px solid var(--clr-primary);
+    border: 1px solid var(--clr-border);
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 0 15px #00000022;
@@ -217,6 +217,7 @@ nav a.active {
 .gallery-item:hover {
     transform: scale(1.04);
     box-shadow: 0 0 30px var(--clr-primary);
+    background: linear-gradient(to top, var(--clr-hover-light) 0%, #00000009 70%);
 }
 
 .gallery-item img {

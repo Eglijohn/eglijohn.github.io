@@ -209,7 +209,7 @@ nav a.active {
 .tooltip::after {
     content: attr(data-tooltip);
     position: absolute;
-    top: -2.5rem;
+    top: -2.8rem;
     backdrop-filter: blur(var(--cursor-dot-blur));
     color: var(--clr-white);
     padding: 0.5rem 1rem;
@@ -225,7 +225,7 @@ nav a.active {
 
 .tooltip:hover::after {
     opacity: 1;
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
 .projects {
