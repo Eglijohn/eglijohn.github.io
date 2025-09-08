@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-    --clr-primary: #4a7bbd;
+    --clr-primary: rgb(48, 125, 197);
     --clr-primary-dark: #172133;
     --clr-primary-light: #8bb7e0;
     --clr-accent: #4ad9e6;
@@ -34,7 +34,8 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
-html, body {
+html,
+body {
     cursor: none;
     scroll-behavior: smooth;
     font-size: 110%;
@@ -45,9 +46,12 @@ html, body {
     color: var(--clr-white);
 }
 
-a, button, [role="button"],
+a,
+button,
+[role="button"],
 .social-icons a,
-.project-card a {
+.project-card a,
+.tool-item a {
     cursor: none;
 }
 
@@ -144,6 +148,7 @@ nav a.active {
         margin-top: -2rem;
         margin-bottom: -2rem;
     }
+
     100% {
         opacity: 1;
         margin-top: 0;
@@ -228,6 +233,65 @@ nav a.active {
     transform: translateY(-10px);
 }
 
+.tools {
+    background-color: var(--clr-bg);
+    padding: 10rem 5rem;
+    margin-top: -1rem;
+    margin-bottom: -2rem;
+}
+
+.tools .title {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 5rem;
+    background: linear-gradient(to right, #121fcf 0%, var(--clr-primary) 38%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--clr-primary);
+    transition: var(--transition-default);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tool-item:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to top, var(--clr-hover-light) 0%, #00000009 70%);
+    box-shadow: 0 0 30px var(--clr-primary);
+}
+
+.tool-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    transition: var(--transition-default);
+}
+
+.tool-item:hover img {
+    transform: scale(1.1);
+}
+
+.tool-item h3 {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--clr-white);
+}
+
 .projects {
     background-color: var(--clr-bg);
     padding: 10rem 5rem;
@@ -255,8 +319,8 @@ nav a.active {
 
 .projects .project-card:hover {
     transform: scale(1.05);
-    background: linear-gradient(to left, var(--clr-hover-light) 0%, #00000009 70%);
-    box-shadow: 0 0 50px var(--clr-primary);
+    background: linear-gradient(to top, var(--clr-hover-light) 0%, #00000009 70%);
+    box-shadow: 0 0 30px var(--clr-primary);
 }
 
 .projects .project-card h1 {
@@ -299,4 +363,24 @@ nav a.active {
     transform: translate(-50%, -50%);
     backdrop-filter: blur(var(--cursor-dot-blur));
     border: 1px solid var(--clr-border);
+}
+
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .tool-item {
+        padding: 1rem;
+    }
+
+    .tool-item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tool-item h3 {
+        font-size: 0.9rem;
+    }
 }

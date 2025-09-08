@@ -1,30 +1,39 @@
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav a');
+const cursorDot = document.getElementById('cursor-dot');
 
-window.onload = function () {
-    window.scrollTo(0, 0);
-};
+document.addEventListener('mousemove', (e) => {
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
 
 window.addEventListener('scroll', () => {
-    let currentSection = '';
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
 
+    let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 50) {
-            currentSection = section.getAttribute('id');
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
         }
     });
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
+        if (link.getAttribute('href').substring(1) === current) {
             link.classList.add('active');
         }
     });
-});
-
-document.addEventListener('mousemove', function(e) {
-    const dot = document.getElementById('cursor-dot');
-    dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
 });
