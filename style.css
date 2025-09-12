@@ -4,8 +4,8 @@
     --clr-primary: rgb(48, 125, 197);
     --clr-primary-dark: #172133;
     --clr-primary-light: #8bb7e0;
-    --clr-accent: #4ad9e6;
-    --clr-bg: #07090c;
+    --clr-accent: rgb(50, 150, 250);
+    --clr-bg: #0a0a0a;
     --clr-bg-gradient: linear-gradient(to bottom, var(--clr-primary-dark), var(--clr-bg) 15%);
     --clr-header-bg: linear-gradient(to right, #ababab10, #00000065 50%);
     --clr-tooltip-bg: linear-gradient(to right, var(--clr-primary-dark) 0%, var(--clr-accent));
@@ -19,7 +19,7 @@
     --transition-fast: 0.2s linear;
     --transition-default: 0.3s ease;
 
-    --cursor-dot-size: 25px;
+    --cursor-dot-size: 15px;
     --cursor-dot-bg: var(--clr-white-faded);
     --cursor-dot-blur: 4px;
 }
@@ -28,6 +28,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-align: center;
     text-decoration: none;
     border: none;
     outline: none;
@@ -42,7 +43,7 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
-    background: var(--clr-bg-gradient);
+    background: var(--clr-bg);
     color: var(--clr-white);
 }
 
@@ -57,7 +58,6 @@ button,
 
 header {
     position: fixed;
-    top: 0.5rem;
     width: 100%;
     padding: 0.2rem 11%;
     backdrop-filter: blur(8px);
@@ -66,17 +66,13 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    border-radius: 0.4rem;
     border: 1px solid var(--clr-border);
 }
 
 footer {
     background-color: var(--clr-footer);
     height: 50px;
-    margin: 0 0.3rem;
-    border-radius: 1rem;
     text-align: left;
-    padding-left: 1rem;
     line-height: 50px;
     font-size: 0.9rem;
     border: 1px solid var(--clr-border);
@@ -85,7 +81,7 @@ footer {
 .logo {
     margin-left: -7rem;
     margin-top: 0.5rem;
-    width: 3rem;
+    width: 2rem;
     border-radius: 100rem;
     color: var(--clr-primary);
     transition: var(--transition-default);
@@ -93,24 +89,26 @@ footer {
 
 .logo:hover {
     transform: scale(1.15);
-    text-shadow: 0 0 25px var(--clr-primary-light);
+    text-shadow: 0 0 25px var(--clr-accent);
     border: 1px solid silver;
 }
 
 nav a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--clr-white);
     margin-left: 4rem;
     font-weight: 500;
-    transition: var(--transition-default);
+    transition: 0 0 25px var(--transition-default);
     border-bottom: 3px solid var(--clr-transparent);
+}
+
+nav a:hover {
+    text-shadow: 0 0 25px var(--clr-accent);
 }
 
 nav a:hover,
 nav a.active {
     color: var(--clr-primary);
-    border-bottom: 3px solid var(--clr-primary);
-    text-shadow: 0 0 50px var(--clr-primary-light);
 }
 
 @media (max-width: 995px) {
@@ -121,7 +119,7 @@ nav a.active {
         width: 40%;
         display: none;
         padding: 1rem;
-        background-color: var(--clr-hover-bg);
+
         border-bottom-left-radius: 2rem;
     }
 
@@ -166,22 +164,25 @@ nav a.active {
 }
 
 .home-content h1 {
-    font-size: 3rem;
+    text-align: center;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-top: 4rem;
 }
 
 .home-content h2 {
+    text-align: center;
     margin-top: -0.7rem;
     font-size: 72px;
-    background: linear-gradient(to right, #121fcf 0%, var(--clr-primary) 30%);
+    background: linear-gradient(to right, #121fcf 0%, var(--clr-primary) 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .home-content p {
+    text-align: center;
     margin-top: 1.5rem;
-    font-size: 1.6rem;
+    font-size: 1rem;
 }
 
 .home-img img {
@@ -205,10 +206,7 @@ nav a.active {
 }
 
 .social-icons a:hover {
-    color: black;
-    background-color: var(--clr-primary);
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 0 25px var(--clr-primary);
+    text-shadow: 0 0 25px var(--clr-primary);
 }
 
 .tooltip::after {
@@ -220,7 +218,7 @@ nav a.active {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: 1.2rem;
-    opacity: 0;
+    opacity: 1;
     white-space: nowrap;
     pointer-events: none;
     transition: opacity var(--transition-default), transform var(--transition-default);
@@ -235,13 +233,13 @@ nav a.active {
 
 .tools {
     background-color: var(--clr-bg);
-    padding: 10rem 5rem;
+    padding: 15rem 5rem;
     margin-top: -1rem;
     margin-bottom: -2rem;
 }
 
 .tools .title {
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 5rem;
     background: linear-gradient(to right, #121fcf 0%, var(--clr-primary) 38%);
@@ -251,8 +249,8 @@ nav a.active {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -263,15 +261,11 @@ nav a.active {
     align-items: center;
     padding: 1.5rem;
     border-radius: 1rem;
-    border: 1px solid var(--clr-primary);
     transition: var(--transition-default);
-    background: rgba(0, 0, 0, 0.2);
 }
 
 .tool-item:hover {
     transform: scale(1.05);
-    background: linear-gradient(to top, var(--clr-hover-light) 0%, #00000009 70%);
-    box-shadow: 0 0 30px var(--clr-primary);
 }
 
 .tool-item img {
@@ -294,13 +288,13 @@ nav a.active {
 
 .projects {
     background-color: var(--clr-bg);
-    padding: 10rem 5rem;
+    padding: 5rem 5rem;
     margin-top: -1rem;
     margin-bottom: -2rem;
 }
 
 .projects .title {
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 5rem;
     background: linear-gradient(to right, #121fcf 0%, var(--clr-primary) 38%);
@@ -312,15 +306,13 @@ nav a.active {
     margin: 0 auto 5rem auto;
     max-width: 600px;
     padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid var(--clr-primary);
+    border-radius: 5px;
+    border: 1px solid var(--clr-border);
     transition: var(--transition-default);
 }
 
 .projects .project-card:hover {
     transform: scale(1.05);
-    background: linear-gradient(to top, var(--clr-hover-light) 0%, #00000009 70%);
-    box-shadow: 0 0 30px var(--clr-primary);
 }
 
 .projects .project-card h1 {
@@ -341,15 +333,13 @@ nav a.active {
     height: 4rem;
     font-size: 2rem;
     border-radius: 50%;
+    margin: 3rem 1.5rem 3rem 0;
     color: var(--clr-accent);
     transition: var(--transition-default);
 }
 
 .projects .project-card a:hover {
-    color: black;
-    background-color: var(--clr-primary);
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 0 25px var(--clr-primary);
+    text-shadow: 0 0 25px var(--clr-accent);
 }
 
 #cursor-dot {
